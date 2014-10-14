@@ -12,10 +12,4 @@ describe "CostumeStore" do
     expect(CostumeStore.find_by(name: spirit_halloween.name)).to eq(spirit_halloween)
   end
 
-  it "has associated characters in an array" do
-    josh = Character.create(name: "Josh")
-    tom_hanks.characters << josh
-    expect(tom_hanks.characters).to include(Character.first)
-  end
-
 end
