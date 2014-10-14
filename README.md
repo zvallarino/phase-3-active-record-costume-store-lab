@@ -6,7 +6,6 @@ resources: 1
 
 # Activerecord Costume Store
 
-
 ## Background
 
 Info info
