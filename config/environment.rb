@@ -5,7 +5,7 @@ require 'rake'
 require 'active_record'
 require 'yaml/store'
 require 'ostruct'
-
+require 'date'
 DBNAME = "set_db_name"
 
 Dir[File.join(File.dirname(__FILE__), "../app/models", "*.rb")].each {|f| require f}

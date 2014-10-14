@@ -19,3 +19,13 @@ end
 def __
   raise "Replace __ with test code."
 end
+
+def get_opening_time
+  d = Date.today
+  Time.new(d.year, d.month, d.day, 9, 00)
+end
+
+def get_closing_time
+  d = Date.today
+  Time.new(d.year, d.month, d.day, 22, 00)
+end
