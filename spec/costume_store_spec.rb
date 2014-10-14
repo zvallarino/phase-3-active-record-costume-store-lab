@@ -23,7 +23,7 @@ describe "CostumeStore" do
     expect(CostumeStore.find_by(costume_inventory: 785)).to eq(adventure)
   end
 
-  it "knows how many employees it has" do
+  it "has an employees count" do
     rickys = CostumeStore.create(
       name: "Ricky’s", 
       location: "375 Broadway",
@@ -48,7 +48,7 @@ describe "CostumeStore" do
     expect(CostumeStore.find_by(name: "Spirit").still_in_business).to eq(false)
   end
 
-  it "knows its opening time" do
+  it "has an opening time" do
     start_time = get_opening_time
     creative = CostumeStore.create(
       name: "Creative Costume Co", 
@@ -57,7 +57,7 @@ describe "CostumeStore" do
     expect(CostumeStore.find_by(name: "Creative Costume Co").opening_time).to eq(start_time)
   end
 
-  it "knows its closing time" do
+  it "has a closing time" do
     end_time = get_closing_time
     ny_costumes = CostumeStore.create(
       name: "New York Costumes", 
