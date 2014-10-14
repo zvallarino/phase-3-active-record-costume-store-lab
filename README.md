@@ -6,9 +6,16 @@ resources: 1
 
 # Activerecord Costume Store
 
-## Objectives
 
 ## Background
+
+Info info
+
+![jack o lantern emoji](http://www.emoji-cheat-sheet.com/graphics/emojis/jack_o_lantern.png)
+
+![dog ghost emoji](http://www.emoji-cheat-sheet.com/graphics/emojis/ghost.png)
+
+## Objectives
 
 ## Instructions
 
@@ -35,4 +42,4 @@ resources: 1
 ```
 
 ## Resources
-
+* [resource](#)
