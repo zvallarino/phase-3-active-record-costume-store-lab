@@ -1,7 +1,7 @@
 ---
 tags: activerecord, todo, introductory
 languages: ruby
-resources: 1
+resources: 2
 ---
 
 # ActiveRecord Costume Store
