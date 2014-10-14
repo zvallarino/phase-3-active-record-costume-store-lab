@@ -1,1 +1,3 @@
 Gemfile.lock
+db/set_db_name-development.db
+db/set_db_name-test.db
