@@ -8,6 +8,11 @@ class CreateCostumeStores < ActiveRecord::Migration
       t.boolean :still_in_business
       t.datetime :opening_time
       t.datetime :closing_time
+<<<<<<< HEAD
+
+      t.timestamps null: false
+=======
+>>>>>>> create migration for costume stores
     end
   end
 end
