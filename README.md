@@ -41,7 +41,7 @@ Before coding out the creation of this table, take a look at just a few ActiveRe
 
 ## ActiveRecord
 
-ActiveRecord is magic. Well, not really. But it does build out a bunch of methods for you. For instance, when it's used properly it will give you access to methods such as `create`, `save`, and `find_by`. 
+ActiveRecord is magic. Well, not really. But it does build out a bunch of methods for you. For instance, when it's used properly it will give you access to methods such as `create`, `save`, and `find_by`. Rejoice! Never again will you have to manually build out these methods!
 
 ActiveRecord allows you to create a database that interacts with your class with only a few lines of code. These lines of code go to creating a model, which resides in the `app/models` folder, and a migration, which resides in the `db/migrations` folder.
 
@@ -55,7 +55,7 @@ You might notice that in both the examples above, the numbers at the front of th
 
 #### Example 
 
-For instance, let's say you wanted to make a `class Candy`, which has two attributes, a name (string) and the number of calories (integer), you would write the migration as seen below:
+For instance, let's say you wanted to make a class called `Candy`. Candies should have two attributes, a name (string) and the number of calories (integer), you would write the migration as seen below:
 
 `db/migrations/20130915204319_create_candies.rb`
 
@@ -71,7 +71,9 @@ class CreateCandies < ActiveRecord::Migration
 end
 ```
 
-Meanwhile, the model would be singular.
+Note: You might be wondering what `t.timestamps` is doing here. Well, it creates two new columns, `created_at` and `updated_at`. These are handy columns to have around as sometimes you want to query based on the time of creation or update-tion instead of querying using attributes or ids. To read more about timestamps, go to ActiveRecord's [docs on them](http://api.rubyonrails.org/classes/ActiveRecord/Timestamp.html).
+
+While the migration was plural, the model would be singular:
 
 `app/models/candy.rb`
 
@@ -167,3 +169,4 @@ You will only be altering code in four files, `costume_store.rb` and `costume.rb
 * [ActiveRecord Migrations](http://guides.rubyonrails.org/migrations.html)
   * Just look at the code for the example migrations
 * [Creating Active Record Models](http://guides.rubyonrails.org/active_record_basics.html#creating-active-record-models) 
+* [Timestamps](http://api.rubyonrails.org/classes/ActiveRecord/Timestamp.html)
