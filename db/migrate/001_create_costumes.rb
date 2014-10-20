@@ -1,4 +1,4 @@
-class CreateCostumes < ActiveRecord::Migration[4.2]
+class CreateCostumes < ActiveRecord::Migration
   def change
     create_table :costumes do |t|
       t.string :name
@@ -6,7 +6,7 @@ class CreateCostumes < ActiveRecord::Migration[4.2]
       t.string :image_url
       t.float :price
 
-      t.timestamps null: false
+      t.timestamps
     end
   end
 end
