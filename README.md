@@ -32,6 +32,58 @@ Before coding out the creation of this table, take a look at just a few ActiveRe
 |string                         | "Halloween", "Boo!"                    |
 |datetime                       | DateTime.now, DateTime.new(2014,10,31) |
 
+## ActiveRecord
+
+ActiveRecord is magic. Well, not really. But it does build out a bunch of methods for you. For instance, when it's used properly it will give you access to methods such as `create`, `save`, and `find_by`. 
+
+ActiveRecord allows you to create a database that interacts with your class with only a few lines of code. These lines of code go to creating a model, which resides in the `app/models` folder, and a migration, which resides in the `db/migrations` folder.
+
+The model inherits from `ActiveRecord::Base` while the migration inherits from `ActiveRecord::Migration`. Many migrations these days have a `change` method, but you might also see migrations with an `up` and a `down` method instead. To use ActiveRecord, you have to stick to some specific naming conventions: while the migrations are plural, the models are singular. 
+
+#### Migrations
+
+To start, the class names in the migration files must match their file names. For instance, a class in the migration file called `20141013204115_create_candies.rb` must be named `CreateCandies` while a class in a migration file called `20130915204319_add_addresses_to_houses.rb` must be called AddAddressesToHouses. 
+
+You might notice that in both the examples above, the numbers at the front of the file name were ignored. These numbers are in the form `YYYYMMDDHHMMSS`. Later on, these timestamps will become important as Rails uses them to determine which migration should be run and in what order. For instance, if you made a table called `dog_walkers` and then added a column to it called `rating`, that would be fine as the timestamp on the table creation would be before adding a column to it. However, if you did this in reverse order, that is adding a column to a table that doesn't exist then creating the table, you would get an error.
+
+#### Example 
+
+For instance, let's say you wanted to make a `class Candy`, which has two attributes, a name (string) and the number of calories (integer), you would write the migration as seen below:
+
+`db/migrations/20130915204319_create_candies.rb`
+
+```ruby
+class CreateCandies < ActiveRecord::Migration
+  def change
+    create_table :products do |t|
+      t.string :name
+      t.integer :calories
+      t.timestamps
+    end
+  end
+end
+```
+
+Meanwhile, the model would be singular.
+
+`app/models/candy.rb`
+
+```ruby
+class CostumeStore < ActiveRecord::Base
+end
+```
+
+After saving the code above, running `rake db:migrate` will apply the desired changes to the database by running the change method. Then you can alter the database with simple Ruby statements.
+
+For instance, you could type
+
+```ruby
+Candy.create(:name => "Reese's Peanut Butter Cups", :calories => 210)
+Candy.find_by(:name => "Reese's Peanut Butter Cups")
+# => 
+``` 
+
+
 ## Instructions
 
 #### File Structure
