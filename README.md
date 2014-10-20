@@ -155,6 +155,7 @@ You will only be altering code in four files, `costume_store.rb` and `costume.rb
 #### Getting Started
 
 **This is a test-driven lab so start with the first test and work your way down.**
+
 **Your models should be no longer than two lines of code**
 
 * The first step is to run `bundle install`.
