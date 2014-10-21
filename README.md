@@ -11,7 +11,6 @@ resources: 3
 |Section                           |
 |----------------------------------|
 |[Objectives](#objectives)         |
-|[Background](#background)         |
 |[ActiveRecord](#activerecord)     |
 |[Example](#example)               |
 |[Instructions](#instructions)     |
