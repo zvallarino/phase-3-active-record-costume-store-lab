@@ -1,7 +1,7 @@
 ---
 tags: activerecord, todo, introductory
 languages: ruby
-resources: 2
+resources: 3
 ---
 
 # ActiveRecord Costume Store
@@ -21,11 +21,15 @@ resources: 2
 
 ![jack o lantern emoji](http://www.emoji-cheat-sheet.com/graphics/emojis/jack_o_lantern.png) ![dog ghost emoji](http://www.emoji-cheat-sheet.com/graphics/emojis/ghost.png) ![jack o lantern emoji](http://www.emoji-cheat-sheet.com/graphics/emojis/jack_o_lantern.png)
 
-For this morning's todo, you'll be creating a table, 'costume_stores', and a class, CostumeStore, with the help of ActiveRecord. You will also be creating a second table, 'costumes' and a class called Costume.
+For this morning's todo, you'll be creating the following tables: 'costumes','costume_stores', and 'haunted_houses'. You be creating the following classes: `Costume`, `CostumeStore`, and `HauntedHouse`.
 
-## Background
+The `costumes` table will have four columns:
+  1. name
+  2. price
+  3. size
+  4. image url
 
-The costume_stores table will have seven columns:
+The `costume_stores` table will have seven columns:
   1. name
   2. location
   3. number of costumes, or "costume inventory"
@@ -34,21 +38,17 @@ The costume_stores table will have seven columns:
   6. opening time
   7. closing time
 
-The costumes table will have four columns:
+The `haunted_houses` table will have eight columns:
   1. name
-  2. price
-  3. size
-  4. image url
+  2. location
+  3. theme
+  4. price
+  5. whether they're family friendly or not
+  6. opening date
+  7. closing date
+  8. long description
 
-Before coding out the creation of this table, take a look at just a few ActiveRecord data types below:
-
-|Data Type                      |Examples                                |
-|-------------------------------|----------------------------------------|
-|boolean                        | true, false                            |
-|integer                        | 2, -13, 485                            |
-|string                         | "Halloween", "Boo!"                    |
-|datetime                       | DateTime.now, DateTime.new(2014,10,31) |
-|float                          | 2.234, 32.2124, -6.342                 |
+Before coding out the creation of this table, read about ActiveRecord below:
 
 ## ActiveRecord
 
@@ -63,6 +63,61 @@ The model inherits from `ActiveRecord::Base` while the migration inherits from `
 To start, the class names in the migration files must match their file names. For instance, a class in the migration file called `20141013204115_create_candies.rb` must be named `CreateCandies` while a class in a migration file called `20130915204319_add_addresses_to_houses.rb` must be called AddAddressesToHouses. 
 
 You might notice that in both the examples above, the numbers at the front of the file name were ignored. These numbers are in the form `YYYYMMDDHHMMSS`. Later on, these timestamps will become important as Rails uses them to determine which migration should be run and in what order. For instance, if you made a table called `dog_walkers` and then added a column to it called `rating`, that would be fine as the timestamp on the table creation would be before adding a column to it. However, if you did this in reverse order, that is adding a column to a table that doesn't exist then creating the table, you would get an error.
+
+Migrations, as it was mentioned before, inherit from ActiveRecord::Migration and usually have a method called `change`. In change, you can create a table with the [create_table](http://guides.rubyonrails.org/migrations.html#creating-a-table) method. This method automatically will create a primary key column called `id`, but this default can be overridden if you'd like to customize it.
+
+Here's a simple example of the `create_table` method in action:
+
+```ruby
+class CreateDogs < ActiveRecord::Migration
+  def change
+    create_table :dogs do |t|
+      t.string :name
+      t.string :breed
+    end
+  end
+end
+```
+
+The above code would create a table called `dogs` with three columns: `name`, `breed` (both explicitly created), and an implicitly created `id` column.
+
+Take a look at a few data types that ActiveRecord supports below:
+
+|Data Type                      |Examples                                               |
+|-------------------------------|-------------------------------------------------------|
+|boolean                        | true, false                                           |
+|integer                        | 2, -13, 485                                           |
+|string                         | "Halloween", "Boo!", strings betweeen 1-255 characters|
+|datetime                       | DateTime.now, DateTime.new(2014,10,31)                |
+|float                          | 2.234, 32.2124, -6.342                                |
+|text                           | strings between 1 and 2 ^ 32 - 1 characters           |
+
+#### Models
+
+Like migrations, models also inherit, but they inherit from ActiveRecord::Base. A simple model would look like this:
+
+```ruby
+class Dog < ActiveRecord::Base
+end
+```
+
+Even though there are no explicit methods to call on name and breed, because this Dog model would work with the created `dogs` table above and you would be able to call `name`, `breed`, and `id` on any new instance of the Dog class. For instance (get it?!?!):
+
+```ruby
+shiloh = Dog.new
+=> #<Dog id: 1, name: nil, breed: nil>
+shiloh.name = "Shiloh"
+=> "Shiloh"
+shiloh.breed = "Beagle"
+=> "Beagle"
+shiloh.save
+=> true
+
+Dog.find_by(:name => "Shiloh") == shiloh
+=> true
+```
+
+Notice that you had access to reader and writer methods that cooperated with the database that you never had to actually code. You could set the name without ever writing `def name=()` and call the `self.find_by(attribute)` method without ever teaching your Dog class how to look up data in the database. It's pretty awesome. Take a look at an example below.
 
 #### Example 
 
