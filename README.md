@@ -208,30 +208,34 @@ Isn't that amazing? Twelve lines of code allows you to create a table and a clas
 
 #### File Structure
 
-You will only be altering code in four files, `costume_store.rb` and `costume.rb` in the `app/models/` folder and `001_create_costume_stores.rb` and `002_create_costumes.rb` in the `db/migrations/` folder.
+You will only be altering code in six files, the three files in the `models` folder and the three files in the `db/migrations` folder.
 
 ```
 ├── app
 │   └── models
+│       ├── costume.rb
 │       ├── costume_store.rb
-│       └── costume.rb
+│       └── haunted_house.rb
 └──db
     └── migrations
-        ├── 001_create_costume_stores.rb
-        └── 002_create_costumes.rb
+        ├── 001_create_costumes.rb
+        ├── 002_create_costume_stores.rb
+        └── 003_create_haunted_houses.rb
 ```
 
 #### Getting Started
 
 **This is a test-driven lab so start with the first test and work your way down.**
 
-**Your models should be no longer than two lines of code**
+**Your models should be no longer than two lines of code.**
 
 * The first step is to run `bundle install`.
-* Create the CostumeStore class in `app/models/`.
-* Fill out the ActiveRecord migration such that it `costume_stores` the specs.
 * Create the Costume class in `app/models/`.
 * Fill out the ActiveRecord migration for costumes such that it passes the specs.
+* Create the CostumeStore class in `app/models/`.
+* Fill out the ActiveRecord migration such that it `costume_stores` the specs.
+* Create the HauntedHouse class in `app/models/`.
+* Fill out the ActiveRecord migration for haunted_houses such that it passes the specs.
 * Remember to run `rake db:migrate` every time you change or create a migration. 
 * Just like for any other lab, run `rspec` to view your progress.
 
