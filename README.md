@@ -1,7 +1,7 @@
 ---
 tags: activerecord, todo, introductory
 languages: ruby
-resources: 2
+resources: 3
 ---
 
 # ActiveRecord Costume Store
@@ -21,9 +21,15 @@ resources: 2
 
 ![jack o lantern emoji](http://www.emoji-cheat-sheet.com/graphics/emojis/jack_o_lantern.png) ![dog ghost emoji](http://www.emoji-cheat-sheet.com/graphics/emojis/ghost.png) ![jack o lantern emoji](http://www.emoji-cheat-sheet.com/graphics/emojis/jack_o_lantern.png)
 
-For this morning's todo, you'll be creating a table, 'costume_stores', and a class, CostumeStore, with the help of ActiveRecord. You will also be creating a second table, 'costumes' and a class called Costume.
+For this morning's todo, you'll be creating the following tables: 'costumes','costume_stores', and 'haunted_houses'. You be creating the following classes: `Costume`, `CostumeStore`, and `HauntedHouse`.
 
-The costume_stores table will have seven columns:
+The `costumes` table will have four columns:
+  1. name
+  2. price
+  3. size
+  4. image url
+
+The `costume_stores` table will have seven columns:
   1. name
   2. location
   3. number of costumes, or "costume inventory"
@@ -32,13 +38,17 @@ The costume_stores table will have seven columns:
   6. opening time
   7. closing time
 
-The costumes table will have four columns:
+The `haunted_houses` table will have eight columns:
   1. name
   2. price
-  3. size
-  4. image url
+  3. theme
+  4. price
+  5. whether they're family friendly or not
+  6. opening date
+  7. closing date
+  8. long description
 
-Before coding out the creation of this table, read about ActiveRecord below:
+Before coding out the creation of these tables, read about ActiveRecord below:
 
 ## ActiveRecord
 
@@ -71,6 +81,17 @@ end
 
 The above code would create a table called `dogs` with three columns: `name`, `breed` (both explicitly created), and an implicitly created `id` column.
 
+Take a look at a few data types that ActiveRecord supports below:
+
+|Data Type                      |Examples                                               |
+|-------------------------------|-------------------------------------------------------|
+|boolean                        | true, false                                           |
+|integer                        | 2, -13, 485                                           |
+|string                         | "Halloween", "Boo!", strings betweeen 1-255 characters|
+|datetime                       | DateTime.now, DateTime.new(2014,10,31)                |
+|float                          | 2.234, 32.2124, -6.342                                |
+|text                           | strings between 1 and 2 ^ 32 - 1 characters           |
+
 #### Models
 
 Like migrations, models also inherit, but they inherit from ActiveRecord::Base. A simple model would look like this:
@@ -96,7 +117,11 @@ Dog.find_by(:name => "Shiloh") == shiloh
 => true
 ```
 
+<<<<<<< HEAD
 Notice that you had access to reader and writer methods that cooperated with the database that you never had to actually code. You could set the name without ever writing `def name=()` and call the `self.find_by(attribute)` method without ever teaching your Dog class how to look up data in the database. It's pretty awesome. Take a look at an example below!
+=======
+Notice that you had access to reader and writer methods that cooperated with the database that you never had to actually code. You could set the name without ever writing `def name=()` and call the `self.find_by(attribute)` method without ever teaching your Dog class how to look up data in the database. It's pretty awesome. Take a look at an example below.
+>>>>>>> master
 
 #### Example 
 
