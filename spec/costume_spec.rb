@@ -35,4 +35,23 @@ describe "Costume" do
     expect(Costume.find_by(size: "medium")).to eq(horse)
   end
 
+  it "knows when it was created" do
+    Costume.create(
+      name: "Dog's Bumble Bee",
+      image_url: "http://cdn.sheknows.com/filter/l/gallery/halloween_costume_dog_bumblebee.jpg",
+      size: "medium"
+    )
+    bee = Costume.find_by(name: "Dog's Bumble Bee")
+    expect { bee.created_at }.to_not raise_error
+    expect(bee.created_at.to_datetime === Date.today).to eq(true)
+  end
+
+  it "knows when it was last updated" do
+    stegosaurus = Costume.create(name: "Stegosaurus Tortoise Cozy", image_url: "https://img1.etsystatic.com/036/1/7507736/il_570xN.513886615_45eg.jpg")
+    stegosaurus.update(:size => "large")
+    expect { stegosaurus.updated_at }.to_not raise_error
+    expect(stegosaurus.updated_at.to_datetime === Date.today).to eq(true)
+    expect(stegosaurus.updated_at.to_datetime).to be > stegosaurus.created_at.to_datetime
+  end
+
 end
