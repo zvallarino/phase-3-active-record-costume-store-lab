@@ -39,7 +39,7 @@ The `costume_stores` table will have seven columns:
 
 The `haunted_houses` table will have eight columns:
   1. name
-  2. price
+  2. location
   3. theme
   4. price
   5. whether they're family friendly or not
@@ -116,11 +116,7 @@ Dog.find_by(:name => "Shiloh") == shiloh
 => true
 ```
 
-<<<<<<< HEAD
-Notice that you had access to reader and writer methods that cooperated with the database that you never had to actually code. You could set the name without ever writing `def name=()` and call the `self.find_by(attribute)` method without ever teaching your Dog class how to look up data in the database. It's pretty awesome. Take a look at an example below!
-=======
 Notice that you had access to reader and writer methods that cooperated with the database that you never had to actually code. You could set the name without ever writing `def name=()` and call the `self.find_by(attribute)` method without ever teaching your Dog class how to look up data in the database. It's pretty awesome. Take a look at an example below.
->>>>>>> master
 
 #### Example 
 
