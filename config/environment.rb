@@ -7,7 +7,7 @@ require 'yaml/store'
 require 'ostruct'
 require 'date'
 
-DBNAME = "set_db_name"
+DBNAME = "halloween"
 
 Dir[File.join(File.dirname(__FILE__), "../app/models", "*.rb")].each {|f| require f}
 Dir[File.join(File.dirname(__FILE__), "../lib/support", "*.rb")].each {|f| require f}
