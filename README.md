@@ -232,7 +232,7 @@ You will only be altering code in six files, the three files in the `models` fol
 * Fill out the ActiveRecord migration such that it `costume_stores` the specs.
 * Create the HauntedHouse class in `app/models/`.
 * Fill out the ActiveRecord migration for haunted_houses such that it passes the specs.
-* Remember to run `rake db:migrate` every time you change or create a migration. 
+* Remember to run `rake db:migrate` every time you create a migration. 
 * Just like for any other lab, run `rspec` to view your progress.
 
 ## Resources
