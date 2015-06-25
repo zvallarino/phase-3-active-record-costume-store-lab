@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # Active Record Costume Store
+=======
+# ActiveRecord Costume Store
+>>>>>>> Update README.md
 
 ## Contents
 
@@ -18,7 +22,6 @@ In this lab, you'll be creating the following tables: `costumes`,
 `costume_stores`, and `haunted_houses`. You'll be creating the following
 classes: `Costume`, `CostumeStore`, and `HauntedHouse`.
 
-<<<<<<< HEAD
 The `costumes` table will have four columns:
 
   1. name
@@ -31,9 +34,6 @@ will provide a grand total of _six_ columns.
 
 The `costume_stores` table will have seven columns:
 
-=======
-The costume_stores table will have seven columns:
->>>>>>> update readme to include info on model
   1. name
   2. location
   3. number of costumes, or "costume inventory"
@@ -128,14 +128,10 @@ class CreateDogs < ActiveRecord::Migration[4.2]
 end
 ```
 
-<<<<<<< HEAD
 The above code would create a table called `dogs` with three columns: `name`,
 `breed` (both explicitly created), and an implicitly created `id` column.
 
 Take a look at a few data types that Active Record supports below:
-=======
-Before coding out the creation of this table, read about ActiveRecord below:
->>>>>>> update readme to include info on model
 
 |Data Type                      |Examples                                               |
 |-------------------------------|-------------------------------------------------------|
@@ -181,55 +177,7 @@ ever writing `def name=()` and call the `self.find_by(attribute)` method without
 ever teaching your Dog class how to look up data in the database. It's pretty
 awesome. Take a look at an example below.
 
-<<<<<<< HEAD
 #### Example
-=======
-Migrations, as it was mentioned before, inherit from ActiveRecord::Migration and usually have a method called `change`. In change, you can create a table with the [create_table](http://guides.rubyonrails.org/migrations.html#creating-a-table) method. This method automatically will create a primary key column called `id`, but this default can be overridden if you'd like to customize it.
-
-Here's a simple example of the `create_table` method in action:
-
-```ruby
-class CreateDogs < ActiveRecord::Migration
-  def change
-    create_table :dogs do |t|
-      t.string :name
-      t.string :breed
-    end
-  end
-end
-```
-
-The above code would create a table called `dogs` with three columns: `name`, `breed` (both explicitly created), and an implicitly created `id` column.
-
-#### Models
-
-Like migrations, models also inherit, but they inherit from ActiveRecord::Base. A simple model would look like this:
-
-```ruby
-class Dog < ActiveRecord::Base
-end
-```
-
-Even though there are no explicit methods to call on name and breed, because this Dog model would work with the created `dogs` table above and you would be able to call `name`, `breed`, and `id` on any new instance of the Dog class. For instance (get it?!?!):
-
-```ruby
-shiloh = Dog.new
-=> #<Dog id: 1, name: nil, breed: nil>
-shiloh.name = "Shiloh"
-=> "Shiloh"
-shiloh.breed = "Beagle"
-=> "Beagle"
-shiloh.save
-=> true
-
-Dog.find_by(:name => "Shiloh") == shiloh
-=> true
-```
-
-Notice that you had access to reader and writer methods that cooperated with the database that you never had to actually code. You could set the name without ever writing `def name=()` and call the `self.find_by(attribute)` method without ever teaching your Dog class how to look up data in the database. It's pretty awesome. Take a look at an example below!
-
-#### Example 
->>>>>>> update readme to include info on model
 
 Let's say you wanted to make a class called `Candy`. Candies should have two
 attributes, a name (string) and the number of calories (integer), you would
