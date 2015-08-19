@@ -9,6 +9,7 @@ RSpec.configure do |config|
     DatabaseCleaner.start
     DatabaseCleaner.clean
     system("rake db:migrate")
+    DB.tables
   end
 
 end
