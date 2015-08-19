@@ -151,7 +151,7 @@ Candy.create(:name => "Snickers", :calories => 550)
 Candy.create(:name => "Reeeese's Peanut Batter Cups", :calories => 210)
 ```
 
-Retrieving information is just a painless:
+Retrieving information is just as painless:
 
 ```ruby
 reeses = Candy.find_by(:name => "Reeeese's Peanut Butter Cups")
