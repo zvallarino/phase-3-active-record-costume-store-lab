@@ -8,6 +8,7 @@ RSpec.configure do |config|
     DatabaseCleaner.clean_with(:truncation)
     DatabaseCleaner.start
     DatabaseCleaner.clean
+    system("rake db:migrate")
   end
 
 end
@@ -27,16 +28,16 @@ def get_closing_time
 end
 
 def get_description
-  description = <<-eos 
+  description = <<-eos
     DENVER’S #1 RATED HAUNTED HOUSE! FEATURED ON THE TRAVEL CHANNEL'S SHOW AMERICA'S SCARIEST HALLOWEEN ATTRACTIONS!
     CHANGES, UPDATES, AND ENHANCEMENTS GALORE, ALL NEW FOR THE 2014 SEASON!
     RATED IN THE TOP 10 HAUNTED HOUSES IN AMERICA BY HAUNTWORLD MAGAZINE!
     "A mixture of visceral thrills and psychological horror!"
     Are you ready to GET SCARED?! FACE YOUR FEAR at the most insane haunted houses of all Denver Haunted Houses!
-    “Within the walls of the legendary Nightmare Factory a hidden passage was unearthed! 
-    This passage descended two levels into Gordon Cottingham's Hospital for the Mentally Insane, The Asylum. 
+    “Within the walls of the legendary Nightmare Factory a hidden passage was unearthed!
+    This passage descended two levels into Gordon Cottingham's Hospital for the Mentally Insane, The Asylum.
     Much deeper and darker than the previous levels, the Asylum is a damp and musty place infested with spiders, rats, snakes, and the endless screams of the tortured souls.”
-    From the creators of the 13th Floor Haunted House and Nightmare Factory, The Asylum Haunted House is the scariest haunted adventure in all of Denver, Colorado! 
+    From the creators of the 13th Floor Haunted House and Nightmare Factory, The Asylum Haunted House is the scariest haunted adventure in all of Denver, Colorado!
     Featuring all new up-close and in-your- face frights for 2014!
   eos
 end
