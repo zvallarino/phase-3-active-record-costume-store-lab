@@ -137,7 +137,7 @@ While the migration was plural, the model would be singular:
 `app/models/candy.rb`
 
 ```ruby
-class CostumeStore < ActiveRecord::Base
+class Candy < ActiveRecord::Base
 end
 ```
 
