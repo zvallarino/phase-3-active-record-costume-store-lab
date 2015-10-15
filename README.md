@@ -121,7 +121,7 @@ For instance, let's say you wanted to make a class called `Candy`. Candies shoul
 ```ruby
 class CreateCandies < ActiveRecord::Migration
   def change
-    create_table :products do |t|
+    create_table :candies do |t|
       t.string :name
       t.integer :calories
       t.timestamps
