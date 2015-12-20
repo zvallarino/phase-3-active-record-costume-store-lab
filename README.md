@@ -148,14 +148,14 @@ For instance, you could create three rows in the table easily:
 ```ruby
 Candy.create(:name => "Milky Way Midnight", :calories => 220)
 Candy.create(:name => "Snickers", :calories => 550)
-Candy.create(:name => "Reeeese's Peanut Batter Cups", :calories => 210)
+Candy.create(:name => "Reese's Peanut Butter Cups", :calories => 210)
 ```
 
 Retrieving information is just as painless:
 
 ```ruby
-reeses = Candy.find_by(:name => "Reeeese's Peanut Butter Cups")
-# => #<Candy id: 3, name: "Reeeese's Peanut Batter Cups", calories: 210>
+reeses = Candy.find_by(:name => "Reese's Peanut Butter Cups")
+# => #<Candy id: 3, name: "Reese's Peanut Butter Cups", calories: 210>
 Candy.first
 # => #<Candy id: 1, name: "Mikly Way Midnight", calories: 220>
 snickers = Candy.find(2)
