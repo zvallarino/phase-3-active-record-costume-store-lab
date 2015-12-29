@@ -20,6 +20,6 @@ namespace :db do
   end
 end
 
-task :console => "db:migrate" do
+task :console => :environment do
   Pry.start
 end
