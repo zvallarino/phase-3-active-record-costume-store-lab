@@ -235,4 +235,4 @@ You will only be altering code in six files, the three files in the `models` fol
 * [Creating Active Record Models](http://guides.rubyonrails.org/active_record_basics.html#creating-active-record-models) 
 * [Timestamps](http://api.rubyonrails.org/classes/ActiveRecord/Timestamp.html)
 
-<a href='https://learn.co/lessons/activerecord-costume-store-todo' data-visibility='hidden'>View this lesson on Learn.co</a>
+<p data-visibility='hidden'>View <a href='https://learn.co/lessons/activerecord-costume-store-todo' title='ActiveRecord Costume Store'>ActiveRecord Costume Store</a> on Learn.co and start learning to code for free.</p>
