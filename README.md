@@ -223,7 +223,7 @@ You will only be altering code in six files, the three files in the `models` fol
 * Create the Costume class in `app/models/`.
 * Fill out the ActiveRecord migration for costumes such that it passes the specs.
 * Create the CostumeStore class in `app/models/`.
-* Fill out the ActiveRecord migration such that it `costume_stores` the specs.
+* Fill out the ActiveRecord migration for `costume_stores` such that it passes the specs.
 * Create the HauntedHouse class in `app/models/`.
 * Fill out the ActiveRecord migration for haunted_houses such that it passes the specs.
 * Remember to run `rake db:migrate` every time you create a migration. 
@@ -236,3 +236,5 @@ You will only be altering code in six files, the three files in the `models` fol
 * [Timestamps](http://api.rubyonrails.org/classes/ActiveRecord/Timestamp.html)
 
 <p data-visibility='hidden'>View <a href='https://learn.co/lessons/activerecord-costume-store-todo' title='ActiveRecord Costume Store'>ActiveRecord Costume Store</a> on Learn.co and start learning to code for free.</p>
+
+<p class='util--hide'>View <a href='https://learn.co/lessons/activerecord-costume-store-todo'>Migrations and Active Record Lab</a> on Learn.co and start learning to code for free.</p>
