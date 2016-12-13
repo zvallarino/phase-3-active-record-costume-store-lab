@@ -12,7 +12,8 @@
 
 ## Objectives
 
-In this lab, you'll be creating the following tables: 'costumes','costume_stores', and 'haunted_houses'. You'll be creating the following classes: `Costume`, `CostumeStore`, and `HauntedHouse`.
+In this lab, you'll be creating the following tables: `costumes`, `costume_stores`, and `haunted_houses`. You'll be creating the following classes: `Costume`, `CostumeStore`, and `HauntedHouse`.
+
 
 The `costumes` table will have four columns:
   1. name
