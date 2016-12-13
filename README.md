@@ -12,9 +12,7 @@
 
 ## Objectives
 
-![jack o lantern emoji](http://www.emoji-cheat-sheet.com/graphics/emojis/jack_o_lantern.png) ![dog ghost emoji](http://www.emoji-cheat-sheet.com/graphics/emojis/ghost.png) ![jack o lantern emoji](http://www.emoji-cheat-sheet.com/graphics/emojis/jack_o_lantern.png)
-
-For this morning's todo, you'll be creating the following tables: 'costumes','costume_stores', and 'haunted_houses'. You'll be creating the following classes: `Costume`, `CostumeStore`, and `HauntedHouse`.
+In this lab, you'll be creating the following tables: `costumes`, `costume_stores`, and `haunted_houses`. You'll be creating the following classes: `Costume`, `CostumeStore`, and `HauntedHouse`.
 
 The `costumes` table will have four columns:
   1. name
