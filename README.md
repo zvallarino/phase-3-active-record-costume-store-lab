@@ -93,7 +93,7 @@ class Dog < ActiveRecord::Base
 end
 ```
 
-Even though there are no explicit methods to call on name and breed, this Dog model works with the created `dogs` table above and you can call `name`, `breed` and `id` on any new instance of the Dog class. For instance (get it?!?!):
+Even though there are no explicit methods for retrieving `name` and `breed`, this `Dog` model is associated with the created `dogs` table above. Because of this integration, we can call `name`, `breed`, and `id` on any new instance of the Dog class. For example:
 
 ```ruby
 shiloh = Dog.new
