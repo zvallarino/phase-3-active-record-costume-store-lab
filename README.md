@@ -1,19 +1,20 @@
-# ActiveRecord Costume Store
+# Active Record Costume Store
 
 ## Contents
 
 |Section                           |
 |----------------------------------|
 |[Objectives](#objectives)         |
-|[ActiveRecord](#activerecord)     |
+|[Active Record](#active-record)    |
 |[Example](#example)               |
 |[Instructions](#instructions)     |
 |[Resources](#resources)           |
 
 ## Objectives
 
-In this lab, you'll be creating the following tables: `costumes`, `costume_stores`, and `haunted_houses`. You'll be creating the following classes: `Costume`, `CostumeStore`, and `HauntedHouse`.
+:jack_o_lantern: :ghost: :jack_o_lantern:
 
+In this lab, you'll be creating the following tables: `costumes`, `costume_stores`, and `haunted_houses`. You'll be creating the following classes: `Costume`, `CostumeStore`, and `HauntedHouse`.
 
 The `costumes` table will have four columns:
   1. name
@@ -40,15 +41,15 @@ The `haunted_houses` table will have eight columns:
   7. closing date
   8. long description
 
-Before coding out the creation of these tables, read about ActiveRecord below:
+Before coding out the creation of these tables, read about Active Record below:
 
-## ActiveRecord
+## Active Record
 
-ActiveRecord is magic. Well, not really. But it does build out a bunch of methods for you. For instance, when it's used properly it will give you access to methods such as `create`, `save`, and `find_by`. Rejoice! Never again will you have to manually build out these methods!
+Active Record is magic. Well, not really. But it does build out a bunch of methods for you. For instance, when it's used properly it will give you access to methods such as `create`, `save`, and `find_by`. Rejoice! Never again will you have to manually build out these methods!
 
-ActiveRecord allows you to create a database that interacts with your class with only a few lines of code. These lines of code go to creating a model, which resides in the `app/models` folder, and a migration, which resides in the `db/migrate` folder.
+Active Record allows you to create a database that interacts with your class with only a few lines of code. These lines of code go to creating a model, which resides in the `app/models` folder, and a migration, which resides in the `db/migrate` folder.
 
-The model inherits from `ActiveRecord::Base` while the migration inherits from `ActiveRecord::Migration`. Many migrations these days have a `change` method, but you might also see migrations with an `up` and a `down` method instead. To use ActiveRecord, you have to stick to some specific naming conventions: while the migrations are plural, the models are singular. 
+The model inherits from `ActiveRecord::Base` while the migration inherits from `ActiveRecord::Migration`. Many migrations these days have a `change` method, but you might also see migrations with an `up` and a `down` method instead. To use Active Record, you have to stick to some specific naming conventions: while the migrations are plural, the models are singular. 
 
 #### Migrations
 
@@ -56,7 +57,7 @@ To start, the class names in the migration files must match their file names. Fo
 
 You might notice that in both the examples above, the numbers at the front of the file name were ignored. These numbers are in the form `YYYYMMDDHHMMSS`. Later on, these timestamps will become important as Rails uses them to determine which migration should be run and in what order. For instance, if you made a table called `dog_walkers` and then added a column to it called `rating`, that would be fine as the timestamp on the table creation would be before adding a column to it. However, if you did this in reverse order, that is adding a column to a table that doesn't exist then creating the table, you would get an error.
 
-Migrations, as it was mentioned before, inherit from ActiveRecord::Migration and usually have a method called `change`. In change, you can create a table with the [create_table](http://guides.rubyonrails.org/migrations.html#creating-a-table) method. This method automatically will create a primary key column called `id`, but this default can be overridden if you'd like to customize it.
+Migrations, as it was mentioned before, inherit from `ActiveRecord::Migration` and usually have a method called `change`. In change, you can create a table with the [create_table](http://guides.rubyonrails.org/migrations.html#creating-a-table) method. This method automatically will create a primary key column called `id`, but this default can be overridden if you'd like to customize it.
 
 Here's a simple example of the `create_table` method in action:
 
@@ -73,7 +74,7 @@ end
 
 The above code would create a table called `dogs` with three columns: `name`, `breed` (both explicitly created), and an implicitly created `id` column.
 
-Take a look at a few data types that ActiveRecord supports below:
+Take a look at a few data types that Active Record supports below:
 
 |Data Type                      |Examples                                               |
 |-------------------------------|-------------------------------------------------------|
@@ -86,7 +87,7 @@ Take a look at a few data types that ActiveRecord supports below:
 
 #### Models
 
-Like migrations, models also inherit, but they inherit from ActiveRecord::Base. A simple model would look like this:
+Like migrations, models also inherit, but they inherit from `ActiveRecord::Base`. A simple model would look like this:
 
 ```ruby
 class Dog < ActiveRecord::Base
@@ -129,7 +130,7 @@ class CreateCandies < ActiveRecord::Migration
 end
 ```
 
-Note: You might be wondering what `t.timestamps` is doing here. Well, it creates two new columns, `created_at` and `updated_at`. These are handy columns to have around as sometimes you want to query based on the time of creation or update-tion instead of querying using attributes or ids. To read more about timestamps, go to ActiveRecord's [docs on them](http://api.rubyonrails.org/classes/ActiveRecord/Timestamp.html).
+Note: You might be wondering what `t.timestamps` is doing here. Well, it creates two new columns, `created_at` and `updated_at`. These are handy columns to have around as sometimes you want to query based on the time of creation or update-tion instead of querying using attributes or ids. To read more about timestamps, go to Active Record's [docs on them](http://api.rubyonrails.org/classes/ActiveRecord/Timestamp.html).
 
 While the migration was plural, the model would be singular:
 
@@ -191,7 +192,7 @@ Candy.last
 # => #<Candy id: 3, name: "Reese's Peanut Butter Cups", calories: 210>
 ```
 
-Isn't that amazing? Twelve lines of code allows you to create a table and a class that interact with each other elegantly and efficiently. It builds out methods like, `create`, `update`, `count`, `name`, `calories`, along with others such as `build` and `save`.
+Isn't that amazing? Eleven lines of code allows you to create a table and a class that interact with each other elegantly and efficiently. It builds out methods like, `create`, `update`, `count`, `name`, `calories`, along with others such as `build` and `save`.
 
 ## Instructions
 
@@ -201,15 +202,15 @@ You will only be altering code in six files, the three files in the `models` fol
 
 ```
 ├── app
-│   └── models
-│       ├── costume.rb
-│       ├── costume_store.rb
-│       └── haunted_house.rb
+│   └── models
+│       ├── costume.rb
+│       ├── costume_store.rb
+│       └── haunted_house.rb
 └──db
-    └── migrations
-        ├── 001_create_costumes.rb
-        ├── 002_create_costume_stores.rb
-        └── 003_create_haunted_houses.rb
+    └── migrations
+        ├── 001_create_costumes.rb
+        ├── 002_create_costume_stores.rb
+        └── 003_create_haunted_houses.rb
 ```
 
 #### Getting Started
@@ -220,20 +221,18 @@ You will only be altering code in six files, the three files in the `models` fol
 
 * The first step is to run `bundle install`.
 * Create the Costume class in `app/models/`.
-* Fill out the ActiveRecord migration for costumes such that it passes the specs.
+* Fill out the Active Record migration for costumes such that it passes the specs.
 * Create the CostumeStore class in `app/models/`.
-* Fill out the ActiveRecord migration for `costume_stores` such that it passes the specs.
+* Fill out the Active Record migration for `costume_stores` such that it passes the specs.
 * Create the HauntedHouse class in `app/models/`.
-* Fill out the ActiveRecord migration for haunted_houses such that it passes the specs.
+* Fill out the Active Record migration for haunted_houses such that it passes the specs.
 * Remember to run `rake db:migrate` every time you create a migration. 
 * Just like for any other lab, run `rspec` to view your progress.
 
 ## Resources
-* [ActiveRecord Migrations](http://guides.rubyonrails.org/migrations.html)
+* [Active Record Migrations](http://guides.rubyonrails.org/migrations.html)
   * Just look at the code for the example migrations
 * [Creating Active Record Models](http://guides.rubyonrails.org/active_record_basics.html#creating-active-record-models) 
 * [Timestamps](http://api.rubyonrails.org/classes/ActiveRecord/Timestamp.html)
 
-<p data-visibility='hidden'>View <a href='https://learn.co/lessons/activerecord-costume-store-todo' title='ActiveRecord Costume Store'>ActiveRecord Costume Store</a> on Learn.co and start learning to code for free.</p>
-
-<p class='util--hide'>View <a href='https://learn.co/lessons/activerecord-costume-store-todo'>Migrations and Active Record Lab</a> on Learn.co and start learning to code for free.</p>
+<p data-visibility='hidden'>View <a href='https://learn.co/lessons/activerecord-costume-store-todo' title='Active Record Costume Store'>Active Record Costume Store</a> on Learn.co and start learning to code for free.</p>
