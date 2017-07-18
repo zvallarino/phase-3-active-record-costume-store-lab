@@ -49,20 +49,28 @@ Active Record is magic. Well, not really. But it does build out a bunch of metho
 
 Active Record allows you to create a database that interacts with your class with only a few lines of code. These lines of code go to creating a model, which resides in the `app/models` folder, and a migration, which resides in the `db/migrate` folder.
 
-The model inherits from `ActiveRecord::Base` while the migration inherits from `ActiveRecord::Migration`. Many migrations these days have a `change` method, but you might also see migrations with an `up` and a `down` method instead. To use Active Record, you have to stick to some specific naming conventions: while the migrations are plural, the models are singular. 
+The model inherits from `ActiveRecord::Base` while the migration inherits from `ActiveRecord::Migration`. Many migrations these days have a `change` method, but you might also see migrations with an `up` and a `down` method instead. To use Active Record, you have to stick to some specific naming conventions: while the migrations are plural, the models are singular.
 
 #### Migrations
 
-To start, the class names in the migration files must match their file names. For instance, a class in the migration file called `20141013204115_create_candies.rb` must be named `CreateCandies` while a class in a migration file called `20130915204319_add_addresses_to_houses.rb` must be called AddAddressesToHouses. 
+To start, the class names in the migration files must match their file names. For instance, a class in the migration file called `20141013204115_create_candies.rb` must be named `CreateCandies` while a class in a migration file called `20130915204319_add_addresses_to_houses.rb` must be called AddAddressesToHouses.
 
 You might notice that in both the examples above, the numbers at the front of the file name were ignored. These numbers are in the form `YYYYMMDDHHMMSS`. Later on, these timestamps will become important as Rails uses them to determine which migration should be run and in what order. For instance, if you made a table called `dog_walkers` and then added a column to it called `rating`, that would be fine as the timestamp on the table creation would be before adding a column to it. However, if you did this in reverse order, that is adding a column to a table that doesn't exist then creating the table, you would get an error.
 
 Migrations, as it was mentioned before, inherit from `ActiveRecord::Migration` and usually have a method called `change`. In change, you can create a table with the [create_table](http://guides.rubyonrails.org/migrations.html#creating-a-table) method. This method automatically will create a primary key column called `id`, but this default can be overridden if you'd like to customize it.
 
+***NOTE***: As of Active Record 5.x, we can no longer inherit directly from `ActiveRecord::Migration` and must instead specify which version of Active Record / Rails the migration was written for. If we were writing a migration for Active Record 5.1, we would inherit from `ActiveRecord::Migration[5.1]`. Don't worry too much about this until you get to the Rails section. Until then, if you encounter an error like this...
+```
+StandardError: Directly inheriting from ActiveRecord::Migration is not supported. Please specify the Rails release the migration was written for:
+
+  class CreateDogs < ActiveRecord::Migration[4.2]
+```
+...simply add `[4.2]` to the end of `ActiveRecord::Migration`, exactly as the error message instructs.
+
 Here's a simple example of the `create_table` method in action:
 
 ```ruby
-class CreateDogs < ActiveRecord::Migration
+class CreateDogs < ActiveRecord::Migration[4.2]
   def change
     create_table :dogs do |t|
       t.string :name
@@ -112,14 +120,14 @@ Dog.find_by(:name => "Shiloh") == shiloh
 
 Notice that you had access to reader and writer methods that cooperated with the database that you never had to actually code. You could set the name without ever writing `def name=()` and call the `self.find_by(attribute)` method without ever teaching your Dog class how to look up data in the database. It's pretty awesome. Take a look at an example below.
 
-#### Example 
+#### Example
 
 For instance, let's say you wanted to make a class called `Candy`. Candies should have two attributes, a name (string) and the number of calories (integer), you would write the migration as seen below:
 
 `db/migrations/20130915204319_create_candies.rb`
 
 ```ruby
-class CreateCandies < ActiveRecord::Migration
+class CreateCandies < ActiveRecord::Migration[4.2]
   def change
     create_table :candies do |t|
       t.string :name
@@ -226,13 +234,13 @@ You will only be altering code in six files, the three files in the `models` fol
 * Fill out the Active Record migration for `costume_stores` such that it passes the specs.
 * Create the HauntedHouse class in `app/models/`.
 * Fill out the Active Record migration for haunted_houses such that it passes the specs.
-* Remember to run `rake db:migrate` every time you create a migration. 
+* Remember to run `rake db:migrate` every time you create a migration.
 * Just like for any other lab, run `rspec` to view your progress.
 
 ## Resources
 * [Active Record Migrations](http://guides.rubyonrails.org/migrations.html)
   * Just look at the code for the example migrations
-* [Creating Active Record Models](http://guides.rubyonrails.org/active_record_basics.html#creating-active-record-models) 
+* [Creating Active Record Models](http://guides.rubyonrails.org/active_record_basics.html#creating-active-record-models)
 * [Timestamps](http://api.rubyonrails.org/classes/ActiveRecord/Timestamp.html)
 
 <p data-visibility='hidden'>View <a href='https://learn.co/lessons/activerecord-costume-store-todo' title='Active Record Costume Store'>Active Record Costume Store</a> on Learn.co and start learning to code for free.</p>
