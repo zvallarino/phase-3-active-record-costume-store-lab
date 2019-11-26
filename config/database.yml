@@ -1,2 +1,7 @@
-adapter: 'sqlite3'
-database: 'db/halloween.db'
+development:
+  adapter: 'sqlite3'
+  database: 'db/halloween.db'
+
+test:
+  adapter: 'sqlite3'
+  database: 'db/test.db'
