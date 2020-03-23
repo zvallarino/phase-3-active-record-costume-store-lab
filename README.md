@@ -316,7 +316,7 @@ For example, say you've run `rake db:migrate` and `learn` once to start, and see
 that you need to add an attribute to the `costume_stores` table. Since this
 table is the second migration of three, you will need to run `rake db:rollback`
 twice to remove the previous migration for this table, then run 
-`rake db:migrate` again to update the schema.
+`rake db:migrate` again to update the schema. Your code, however, may break if the other migration files are empty.
 
 ## Resources
 
