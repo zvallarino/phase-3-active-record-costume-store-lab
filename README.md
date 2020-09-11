@@ -305,14 +305,14 @@ folder and the three files in the `db/migrations` folder.
 * Fill out the Active Record migration for haunted_houses such that it passes
   the specs.
 
-Just like for any other lab, run `learn` to view your test progress. However,
+Just like for any other lab, run `learn test` to view your test progress. However,
 unlike some of the other labs in thie section, for this lab, when updating an
 existing migration, **you will need to rollback your previous migrations for
 that table using the rake command `rake db:rollback`**. Otherwise, the schema
 will remain unchanged and the changes you make to your migrations will not
 be seen.
 
-For example, say you've run `rake db:migrate` and `learn` once to start, and see
+For example, say you've run `rake db:migrate` and `learn test` once to start, and see
 that you need to add an attribute to the `costume_stores` table. Since this
 table is the second migration of three, you will need to run `rake db:rollback`
 twice to remove the previous migration for this table, then run 
