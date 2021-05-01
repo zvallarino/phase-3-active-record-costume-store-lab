@@ -1,18 +1,6 @@
-# Active Record Costume Store
+# Costume Store Lab
 
-## Contents
-
-|Section                           |
-|----------------------------------|
-|[Objectives](#objectives)         |
-|[Active Record](#active-record)    |
-|[Example](#example)               |
-|[Instructions](#instructions)     |
-|[Resources](#resources)           |
-
-## Objectives
-
-:jack_o_lantern: :ghost: :jack_o_lantern:
+## Introduction
 
 In this lab, you'll be creating the following tables: `costumes`,
 `costume_stores`, and `haunted_houses`. You'll be creating the following
@@ -49,7 +37,7 @@ The `haunted_houses` table will have eight columns:
   7. closing date
   8. long description
 
-Before coding out the creation of these tables, read about Active Record below:
+Before coding out the creation of these tables, read about Active Record below.
 
 ## Active Record Review
 
