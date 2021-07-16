@@ -229,41 +229,41 @@ classes: `Costume`, `CostumeStore`, and `HauntedHouse`.
 
 The `costumes` table will have four columns:
 
-1. name
-2. price
-3. size
-4. image url
+1. name (string)
+2. price (float)
+3. size (string)
+4. image_url (string)
 
-_as well as_ the two "timestamp" columns: `created_at` and `updated_at`. This
-will provide a grand total of _six_ columns.
+_as well as_ the two [timestamp][timestamps] columns: `created_at` and
+`updated_at`. This will provide a grand total of _six_ columns.
 
 The `costume_stores` table will have seven columns:
 
-1. name
-2. location
-3. number of costumes, or "costume inventory"
-4. number of employees
-5. whether or not it's still in business
-6. opening time
-7. closing time
+1. name (string)
+2. location (string)
+3. costume_inventory (integer)
+4. num_of_employees (integer)
+5. is_in_business (boolean)
+6. opening_time (datetime)
+7. closing_time (datetime)
 
 The `haunted_houses` table will have eight columns:
 
-1. name
-2. location
-3. theme
-4. price
-5. whether they're family friendly or not
-6. opening date
-7. closing date
-8. long description
+1. name (string)
+2. location (string)
+3. theme (string)
+4. price (float)
+5. family_friendly (boolean)
+6. opening_date (datetime)
+7. closing_date (datetime)
+8. description (text)
 
 Before coding out the creation of these tables, read about Active Record below.
 
 ### File Structure
 
-You will only be altering code in six files, the three files in the `models`
-folder and the three files in the `db/migrations` folder.
+You will be altering code in three files in the `models` folder and creating
+three files in the `db/migrations` folder.
 
 ```text
 ├── app
@@ -297,19 +297,34 @@ You can use `rake db:create_migration` to create the files for the migrations.
 - Fill out the Active Record migration for the `haunted_houses` table such that
   it passes the specs.
 
-Just like for any other lab, run `learn test` to view your test progress. However,
-unlike some of the other labs in this section, for this lab, when updating an
-existing migration, **you will need to rollback your previous migrations for
-that table using the Rake command `rake db:rollback`**. Otherwise, the schema
-will remain unchanged and the changes you make to your migrations will not
-be seen.
+When running your migrations and rollbacks, use `RACK_ENV=test` in order to run
+the migrations for the test environment:
 
-For example, say you've run `rake db:migrate` and `learn test` once to start,
-and see that you need to add an attribute to the `costume_stores` table. Since
-this table is the second migration of three, you will need to run
-`rake db:rollback` twice to remove the previous migration for this table, then
-run `rake db:migrate` again to update the schema. Your code, however, may break
-if the other migration files are empty.
+```sh
+bundle exec rake db:migrate RACK_ENV=test
+bundle exec rake db:rollback RACK_ENV=test
+```
+
+You can also run the migrations without `RACK_ENV=test` if you want to explore
+the code from the console:
+
+```sh
+bundle exec rake db:migrate
+```
+
+Just like for any other lab, run `learn test` to view your test progress.
+However, unlike some of the other labs in this section, for this lab, when
+updating an existing migration, **you will need to rollback your previous
+migrations for that table using the Rake command
+`rake db:rollback RACK_ENV=test`**. Otherwise, the schema will remain unchanged
+and the changes you make to your migrations will not be seen.
+
+For example, say you've run `rake db:migrate RACK_ENV=test` and `learn test`
+once to start, and see that you need to add an attribute to the `costume_stores`
+table. Since this table is the second migration of three, you will need to run
+`rake db:rollback RACK_ENV=test` twice to remove the previous migration for this
+table, then run `rake db:migrate RACK_ENV=test` again to update the schema. Your
+code, however, may break if the other migration files are empty.
 
 ## Resources
 
