@@ -305,11 +305,13 @@ bundle exec rake db:migrate RACK_ENV=test
 bundle exec rake db:rollback RACK_ENV=test
 ```
 
-You can also run the migrations without `RACK_ENV=test` if you want to explore
-the code from the console:
+You can also run the migrations without `RACK_ENV=test`, which will migrate the
+development database. This is helpful if you want to explore the code from the
+console:
 
 ```sh
 bundle exec rake db:migrate
+bundle exec rake console
 ```
 
 Just like for any other lab, run `learn test` to view your test progress.
