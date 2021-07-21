@@ -1,55 +1,4 @@
-# Active Record Costume Store
-
-## Contents
-
-|Section                           |
-|----------------------------------|
-|[Objectives](#objectives)         |
-|[Active Record](#active-record)    |
-|[Example](#example)               |
-|[Instructions](#instructions)     |
-|[Resources](#resources)           |
-
-## Objectives
-
-:jack_o_lantern: :ghost: :jack_o_lantern:
-
-In this lab, you'll be creating the following tables: `costumes`,
-`costume_stores`, and `haunted_houses`. You'll be creating the following
-classes: `Costume`, `CostumeStore`, and `HauntedHouse`.
-
-The `costumes` table will have four columns:
-
-  1. name
-  2. price
-  3. size
-  4. image url
-  
-_as well as_ the two "timestamp" columns:  `created_at` and `updated_at`. This
-will provide a grand total of _six_ columns.
-
-The `costume_stores` table will have seven columns:
-
-  1. name
-  2. location
-  3. number of costumes, or "costume inventory"
-  4. number of employees
-  5. whether or not it's still in business
-  6. opening time
-  7. closing time
-
-The `haunted_houses` table will have eight columns:
-
-  1. name
-  2. location
-  3. theme
-  4. price
-  5. whether they're family friendly or not
-  6. opening date
-  7. closing date
-  8. long description
-
-Before coding out the creation of these tables, read about Active Record below:
+# Costume Store Lab
 
 ## Active Record Review
 
@@ -79,13 +28,13 @@ called AddAddressesToHouses.
 
 You might notice that in both the examples above, the numbers at the front of
 the file name were ignored. These numbers are in the form `YYYYMMDDHHMMSS`.
-Later on, these timestamps will become important as Rails uses them to determine
-which migration should be run and in what order. For instance, if you made a
-table called `dog_walkers` and then added a column to it called `rating`, that
-would be fine as the timestamp on the `dog_walkers` table creation would
-indicate it needs to be migrated before adding the `rating` column to it.
-However, if you did this in reverse order, that is adding a column to a table
-that doesn't exist, then creating the table, you would get an error.
+These timestamps are used to determine which migration should be run and in what
+order. For instance, if you made a table called `dog_walkers` and then added a
+column to it called `rating`, that would be fine as the timestamp on the
+`dog_walkers` table creation would indicate it needs to be migrated before
+adding the `rating` column to it. However, if you did this in reverse order,
+that is adding a column to a table that doesn't exist, then creating the table,
+you would get an error.
 
 Migrations, as it was mentioned before, inherit from `ActiveRecord::Migration`
 and usually have a method called `change`. In change, you can create a table
@@ -95,26 +44,10 @@ to customize it.
 
 [create_table]: http://guides.rubyonrails.org/migrations.html#creating-a-table
 
-***NOTE***: As of Active Record 5.x, we can no longer inherit directly from
-`ActiveRecord::Migration` and must instead specify which version of Active
-Record / Rails the migration was written for. If we were writing a migration for
-Active Record 5.1, we would inherit from `ActiveRecord::Migration[5.1]`. Don't
-worry too much about this until you get to the Rails section. Until then, if you
-encounter an error like this...
-
-```text
-StandardError: Directly inheriting from ActiveRecord::Migration is not supported. Please specify the Rails release the migration was written for:
-
-  class CreateDogs < ActiveRecord::Migration[4.2]
-```
-
-...simply add `[4.2]` to the end of `ActiveRecord::Migration`, exactly as the
-error message instructs.
-
 Here's a simple example of the `create_table` method in action:
 
 ```ruby
-class CreateDogs < ActiveRecord::Migration[4.2]
+class CreateDogs < ActiveRecord::Migration[6.1]
   def change
     create_table :dogs do |t|
       t.string :name
@@ -129,19 +62,42 @@ The above code would create a table called `dogs` with three columns: `name`,
 
 Take a look at a few data types that Active Record supports below:
 
-|Data Type                      |Examples                                               |
-|-------------------------------|-------------------------------------------------------|
-|boolean                        | true, false                                           |
-|integer                        | 2, -13, 485                                           |
-|string                         | "Halloween", "Boo!", strings between 1-255 characters|
-|datetime                       | DateTime.now, DateTime.new(2014,10,31)                |
-|float                          | 2.234, 32.2124, -6.342                                |
-|text                           | strings between 1 and 2 ^ 32 - 1 characters           |
+<table border="1" cellpadding="4" cellspacing="0">
+  <tr>
+    <th>Data Type</th>
+    <th>Examples</th>
+  </tr>
+  
+  <tr>
+    <td>boolean</td>
+    <td>true, false </td>
+  </tr>
+  <tr>
+    <td>integer</td>
+    <td>2, -13, 485</td>
+  </tr>
+  <tr>
+    <td>string</td>
+    <td>"Halloween", "Boo!", strings between 1-255 characters</td>
+  </tr>
+  <tr>
+    <td>datetime</td>
+    <td>DateTime.now, DateTime.new(2014,10,31)</td>
+  </tr>
+  <tr>
+    <td>float</td>
+    <td>2.234, 32.2124, -6.342</td>
+  </tr>
+  <tr>
+    <td>text</td>
+    <td>strings between 1 and 2 ^ 32 - 1 characters</td>
+  </tr>
+</table>
 
 ### Models
 
-Like migrations, models also inherit, but they inherit from
-`ActiveRecord::Base`. A simple model would look like this:
+Like migrations, models also inherit some code from Active Record, but they
+inherit from `ActiveRecord::Base`. A simple model would look like this:
 
 ```ruby
 class Dog < ActiveRecord::Base
@@ -155,33 +111,33 @@ the Dog class. For example:
 
 ```ruby
 shiloh = Dog.new
-=> #<Dog id: 1, name: nil, breed: nil>
+# => #<Dog id: 1, name: nil, breed: nil>
 shiloh.name = "Shiloh"
-=> "Shiloh"
+# => "Shiloh"
 shiloh.breed = "Beagle"
-=> "Beagle"
+# => "Beagle"
 shiloh.save
-=> true
+# => true
 
 Dog.find_by(:name => "Shiloh") == shiloh
-=> true
+# => true
 ```
 
-Notice that you had access to reader and writer methods that cooperated with the
-database that you never had to actually code. You could set the name without
-ever writing `def name=()` and call the `self.find_by(attribute)` method without
-ever teaching your Dog class how to look up data in the database. It's pretty
-awesome. Take a look at an example below.
+Notice that you had access to reader and writer methods that work with the
+database that you never had to actually code in the model itself. You could set
+the name without ever writing `def name=()` and call the
+`self.find_by(attribute)` method without ever teaching your `Dog` class how to
+look up data in the database. It's pretty awesome. Take a look at an example
+below.
 
 #### Example
 
 Let's say you wanted to make a class called `Candy`. Candies should have two
-attributes, a name (string) and the number of calories (integer), you would
+attributes, a name (string) and the number of calories (integer). You would
 write the migration as seen below:
 
-`db/migrations/20130915204319_create_candies.rb`
-
 ```ruby
+# db/migrations/20130915204319_create_candies.rb
 class CreateCandies < ActiveRecord::Migration[4.2]
   def change
     create_table :candies do |t|
@@ -194,18 +150,15 @@ end
 ```
 
 > **Note**: You might be wondering what `t.timestamps` is doing here. Well, it
-> creates two new columns, `created_at` and `updated_at`. These are handy columns
-> to have around as sometimes you want to query based on the time of creation or
-> update-tion instead of querying using attributes or ids. To read more about
-> timestamps, go to Active Record's [docs on them][].
+> creates two new columns, `created_at` and `updated_at`. These are handy
+> columns to have around, as sometimes you want to query based on the time a
+> record was created or updated instead of querying using attributes or ids. To
+> read more about timestamps, go to Active Record's [docs on them][timestamps].
 
-[docs on them]: http://api.rubyonrails.org/classes/ActiveRecord/Timestamp.html
-
-While the migration was plural, the model would be singular:
-
-`app/models/candy.rb`
+While the table name was plural, the model would be singular:
 
 ```ruby
+# app/models/candy.rb
 class Candy < ActiveRecord::Base
 end
 ```
@@ -217,9 +170,9 @@ database with simple Ruby statements.
 For instance, you could create three rows in the table easily:
 
 ```ruby
-Candy.create(:name => "Milky Way Midnight", :calories => 220)
-Candy.create(:name => "Snickers", :calories => 550)
-Candy.create(:name => "Reese's Peanut Butter Cups", :calories => 210)
+Candy.create(name: "Milky Way Midnight", calories: 220)
+Candy.create(name: "Snickers", calories: 550)
+Candy.create(name: "Reese's Peanut Butter Cups", calories: 210)
 ```
 
 Retrieving information is just as painless:
@@ -270,10 +223,47 @@ such as `build` and `save`.
 
 ## Instructions
 
+In this lab, you'll be creating the following tables: `costumes`,
+`costume_stores`, and `haunted_houses`. You'll be creating the following
+classes: `Costume`, `CostumeStore`, and `HauntedHouse`.
+
+The `costumes` table will have four columns:
+
+1. name (string)
+2. price (float)
+3. size (string)
+4. image_url (string)
+
+_as well as_ the two [timestamp][timestamps] columns: `created_at` and
+`updated_at`. This will provide a grand total of _six_ columns.
+
+The `costume_stores` table will have seven columns:
+
+1. name (string)
+2. location (string)
+3. costume_inventory (integer)
+4. num_of_employees (integer)
+5. is_in_business (boolean)
+6. opening_time (datetime)
+7. closing_time (datetime)
+
+The `haunted_houses` table will have eight columns:
+
+1. name (string)
+2. location (string)
+3. theme (string)
+4. price (float)
+5. family_friendly (boolean)
+6. opening_date (datetime)
+7. closing_date (datetime)
+8. description (text)
+
+Before coding out the creation of these tables, read about Active Record below.
+
 ### File Structure
 
-You will only be altering code in six files, the three files in the `models`
-folder and the three files in the `db/migrations` folder.
+You will be altering code in three files in the `models` folder and creating
+three files in the `db/migrations` folder.
 
 ```text
 ├── app
@@ -290,39 +280,57 @@ folder and the three files in the `db/migrations` folder.
 
 ### Getting Started
 
-**This is a test-driven lab so start with the first test and work your way down.**
+**This is a test-driven lab so start with the first test and work your way
+down.** Your models should be no longer than two lines of code. Most of your
+work will be done in the migrations.
 
-**Your models should be no longer than two lines of code.**
+You can use `rake db:create_migration` to create the files for the migrations.
 
-* The first step is to run `bundle install`.
-* Create the Costume class in `app/models/`.
-* Fill out the Active Record migration for costumes such that it passes the
-  specs.
-* Create the CostumeStore class in `app/models/`.
-* Fill out the Active Record migration for `costume_stores` such that it passes
-  the specs.
-* Create the HauntedHouse class in `app/models/`.
-* Fill out the Active Record migration for haunted_houses such that it passes
-  the specs.
+- The first step is to run `bundle install`.
+- Create the `Costume` class in `app/models/costume.rb`.
+- Fill out the Active Record migration for the `costumes` table such that it
+  passes the specs.
+- Create the `CostumeStore` class in `app/models/costume_store.rb`.
+- Fill out the Active Record migration for the `costume_stores` table such that
+  it passes the specs.
+- Create the `HauntedHouse` class in `app/models/haunted_house.rb`.
+- Fill out the Active Record migration for the `haunted_houses` table such that
+  it passes the specs.
 
-Just like for any other lab, run `learn` to view your test progress. However,
-unlike some of the other labs in thie section, for this lab, when updating an
-existing migration, **you will need to rollback your previous migrations for
-that table using the rake command `rake db:rollback`**. Otherwise, the schema
-will remain unchanged and the changes you make to your migrations will not
-be seen.
+When running your migrations and rollbacks, use `RACK_ENV=test` in order to run
+the migrations for the test environment:
 
-For example, say you've run `rake db:migrate` and `learn` once to start, and see
-that you need to add an attribute to the `costume_stores` table. Since this
-table is the second migration of three, you will need to run `rake db:rollback`
-twice to remove the previous migration for this table, then run 
-`rake db:migrate` again to update the schema.
+```sh
+bundle exec rake db:migrate RACK_ENV=test
+bundle exec rake db:rollback RACK_ENV=test
+```
+
+You can also run the migrations without `RACK_ENV=test` if you want to explore
+the code from the console:
+
+```sh
+bundle exec rake db:migrate
+```
+
+Just like for any other lab, run `learn test` to view your test progress.
+However, unlike some of the other labs in this section, for this lab, when
+updating an existing migration, **you will need to rollback your previous
+migrations for that table using the Rake command
+`rake db:rollback RACK_ENV=test`**. Otherwise, the schema will remain unchanged
+and the changes you make to your migrations will not be seen.
+
+For example, say you've run `rake db:migrate RACK_ENV=test` and `learn test`
+once to start, and see that you need to add an attribute to the `costume_stores`
+table. Since this table is the second migration of three, you will need to run
+`rake db:rollback RACK_ENV=test` twice to remove the previous migration for this
+table, then run `rake db:migrate RACK_ENV=test` again to update the schema. Your
+code, however, may break if the other migration files are empty.
 
 ## Resources
 
-* [Active Record Migrations](http://guides.rubyonrails.org/migrations.html)
-  * Just look at the code for the example migrations
-* [Creating Active Record Models](http://guides.rubyonrails.org/active_record_basics.html#creating-active-record-models)
-* [Timestamps](http://api.rubyonrails.org/classes/ActiveRecord/Timestamp.html)
+- [Active Record Migrations](https://guides.rubyonrails.org/active_record_migrations.html)
+  - Just look at the code for the example migrations
+- [Creating Active Record Models](https://guides.rubyonrails.org/active_record_basics.html#creating-active-record-models)
+- [Timestamps][timestamps]
 
-<p data-visibility='hidden'>View <a href='https://learn.co/lessons/activerecord-costume-store-todo' title='Active Record Costume Store'>Active Record Costume Store</a> on Learn.co and start learning to code for free.</p>
+[timestamps]: https://api.rubyonrails.org/classes/ActiveRecord/ConnectionAdapters/TableDefinition.html#method-i-timestamps
