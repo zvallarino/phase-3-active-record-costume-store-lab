@@ -62,37 +62,14 @@ The above code would create a table called `dogs` with three columns: `name`,
 
 Take a look at a few data types that Active Record supports below:
 
-<table border="1" cellpadding="4" cellspacing="0">
-  <tr>
-    <th>Data Type</th>
-    <th>Examples</th>
-  </tr>
-  
-  <tr>
-    <td>boolean</td>
-    <td>true, false </td>
-  </tr>
-  <tr>
-    <td>integer</td>
-    <td>2, -13, 485</td>
-  </tr>
-  <tr>
-    <td>string</td>
-    <td>"Halloween", "Boo!", strings between 1-255 characters</td>
-  </tr>
-  <tr>
-    <td>datetime</td>
-    <td>DateTime.now, DateTime.new(2014,10,31)</td>
-  </tr>
-  <tr>
-    <td>float</td>
-    <td>2.234, 32.2124, -6.342</td>
-  </tr>
-  <tr>
-    <td>text</td>
-    <td>strings between 1 and 2 ^ 32 - 1 characters</td>
-  </tr>
-</table>
+| Data Type | Examples |
+| --- | --- |
+| boolean | true, false  |
+| integer | 2, -13, 485 |
+| string | "Halloween", "Boo!", strings between 1-255 characters |
+| datetime | DateTime.now, DateTime.new(2014,10,31) |
+| float | 2.234, 32.2124, -6.342 |
+| text | strings between 1 and 2 ^ 32 - 1 characters |
 
 ### Models
 
