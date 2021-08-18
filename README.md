@@ -62,14 +62,14 @@ The above code would create a table called `dogs` with three columns: `name`,
 
 Take a look at a few data types that Active Record supports below:
 
-| Data Type | Examples |
-| --- | --- |
-| boolean | true, false  |
-| integer | 2, -13, 485 |
-| string | "Halloween", "Boo!", strings between 1-255 characters |
-| datetime | DateTime.now, DateTime.new(2014,10,31) |
-| float | 2.234, 32.2124, -6.342 |
-| text | strings between 1 and 2 ^ 32 - 1 characters |
+| Data Type | Examples                                              |
+| --------- | ----------------------------------------------------- |
+| boolean   | true, false                                           |
+| integer   | 2, -13, 485                                           |
+| string    | "Halloween", "Boo!", strings between 1-255 characters |
+| datetime  | DateTime.now, DateTime.new(2014,10,31)                |
+| float     | 2.234, 32.2124, -6.342                                |
+| text      | strings between 1 and 2 ^ 32 - 1 characters           |
 
 ### Models
 
@@ -114,8 +114,8 @@ attributes, a name (string) and the number of calories (integer). You would
 write the migration as seen below:
 
 ```ruby
-# db/migrations/20130915204319_create_candies.rb
-class CreateCandies < ActiveRecord::Migration[4.2]
+# db/migrate/20130915204319_create_candies.rb
+class CreateCandies < ActiveRecord::Migration[6.1]
   def change
     create_table :candies do |t|
       t.string :name
@@ -240,7 +240,7 @@ Before coding out the creation of these tables, read about Active Record below.
 ### File Structure
 
 You will be altering code in three files in the `models` folder and creating
-three files in the `db/migrations` folder.
+three files in the `db/migrate` folder.
 
 ```text
 ├── app
@@ -249,7 +249,7 @@ three files in the `db/migrations` folder.
 │       ├── costume_store.rb
 │       └── haunted_house.rb
 └──db
-    └── migrations
+    └── migrate
         ├── 001_create_costumes.rb
         ├── 002_create_costume_stores.rb
         └── 003_create_haunted_houses.rb
