@@ -1,5 +1,10 @@
 # Costume Store Lab
 
+## Learning Goals
+
+- Create migrations using Active Record
+- Interact with a SQL database table from a Ruby class using Active Record
+
 ## Active Record Review
 
 Active Record is magic. Well, not really. But it does build out a bunch of
